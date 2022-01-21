@@ -1,3 +1,7 @@
-.nav-link.active {
+.nav-pills.active {
     background-color: rgb(156, 76, 98) !important;
+}
+
+.nav-no-pills {
+    color: rgb(156, 76, 98) !important;
 }

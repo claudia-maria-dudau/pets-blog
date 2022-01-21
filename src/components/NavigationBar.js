@@ -12,12 +12,16 @@ export default function NavigationBar() {
                 <Container>
                     <Navbar.Brand href="/home">Pets Blog</Navbar.Brand>
                     <Nav variant="pills" className="me-auto" defaultActiveKey="/home">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/articles">Articles</Nav.Link>
+                        <Nav.Item>
+                            <Nav.Link href="#/home" eventKey="/home" className="nav-pills">Home</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href="#/articles" eventKey="/articles" className="nav-pills">Articles</Nav.Link>
+                        </Nav.Item>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/login" style={{color: "rgb(156, 76, 98)"}}>Login</Nav.Link>
-                        <Nav.Link href="/signup" style={{color: "rgb(156, 76, 98)"}}>Sign up</Nav.Link>
+                        <Nav.Link href="/login" className="nav-no-pills">Login</Nav.Link>
+                        <Nav.Link href="/signup" className="nav-no-pills">Sign up</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
