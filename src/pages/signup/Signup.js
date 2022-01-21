@@ -2,8 +2,10 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Alert from 'react-bootstrap/Alert'
 
 import { useState } from 'react'
+import { useSignup } from '../../hooks/useSignup'
 
 // styles
 import './Signup.css'
@@ -12,10 +14,11 @@ export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [checkPassword, setCheckPassword] = useState('')
+    const { error, signup } = useSignup()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(email, password, checkPassword)
+        signup(email, password)
     }
 
     return (
@@ -46,6 +49,11 @@ export default function Signup() {
                     Sign up
                 </Button>
             </Form>
+            {error && 
+                <Alert variant="danger" className='alert'>
+                    <p>{error}</p>
+                </Alert>
+            }
         </>
     )
 }
