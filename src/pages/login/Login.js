@@ -2,8 +2,10 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Alert from 'react-bootstrap/Alert'
 
 import { useState } from 'react'
+import { useLogin } from '../../hooks/useLogin'
 
 // styles
 import './Login.css'
@@ -11,10 +13,11 @@ import './Login.css'
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { error, login } = useLogin()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(email, password)
+        login(email, password)
     }
 
     return (
@@ -38,6 +41,11 @@ export default function Login() {
                     Login
                 </Button>
             </Form>
+            {error && 
+                <Alert variant="danger" className='alert'>
+                    <p>{error}</p>
+                </Alert>
+            }
         </>
     )
 }

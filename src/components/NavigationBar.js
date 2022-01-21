@@ -3,9 +3,14 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
+import { useLogout } from '../hooks/useLogout'
+
+// styles
 import './NavigationBar.css'
 
 export default function NavigationBar() {
+    const { logout } = useLogout()
+
     return (
         <>
             <Navbar bg="dark" variant="dark">
@@ -22,6 +27,7 @@ export default function NavigationBar() {
                     <Nav>
                         <Nav.Link href="/login" className="nav-no-pills">Login</Nav.Link>
                         <Nav.Link href="/signup" className="nav-no-pills">Sign up</Nav.Link>
+                        <Nav.Link onClick={logout} className="nav-no-pills">Logout</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
