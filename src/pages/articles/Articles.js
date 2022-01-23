@@ -18,7 +18,7 @@ export default function Articles() {
       {articles && (
         <div className="grid">
           {articles.map(article => (
-            <ArticleCard article={article} />
+            <ArticleCard article={article} key={article.id}/>
           ))}
         </div>
       )}

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 
@@ -13,7 +13,6 @@ import './NavigationBar.css'
 export default function NavigationBar() {
     const { logout } = useLogout()
     const { user } = useAuthContext()
-    const location = useLocation()
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -23,38 +22,24 @@ export default function NavigationBar() {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" className="my-nav">
                 <Container>
-                    <Navbar.Brand href="/home">Pets Blog</Navbar.Brand>
-                    <Nav variant="pills" className="me-auto" defaultActiveKey={location.pathname}>
-                        <Nav.Link eventKey="/home" className="nav-pills">
-                            <Link to="/home">Home</Link>
-                        </Nav.Link>
-                        <Nav.Link eventKey="/articles" className="nav-pills">
-                            <Link to="/articles">Articles</Link>
-                        </Nav.Link>
-                        {user && (
-                            <Nav.Link eventKey="/create" className="nav-pills">
-                                <Link to="/create">Create Article</Link>
-                            </Nav.Link>
-                        )}
+                    <Link to="/home" className="navbar-brand">Pets Blog</Link>
+                    <Nav className="me-auto">
+                        <Link to="/home" className="nav-link">Home</Link>
+                        <Link to="/articles" className="nav-link">Articles</Link>
+                        {user && <Link to="/create" className="nav-link">Create Article</Link>}
                     </Nav>
                     <Nav>
                         {!user && (
                             <>
-                                <Nav.Link>
-                                    <Link to="/login" className="right-buttons">Login</Link>
-                                </Nav.Link>
-                                <Nav.Link>
-                                    <Link to="/signup" className="right-buttons">Sign up</Link>
-                                </Nav.Link>
+                                <Link to="/login" className="nav-link right-buttons">Login</Link>
+                                <Link to="/signup" className="nav-link right-buttons">Sign up</Link>
                             </>
                         )}
                         {user && (
                             <>
-                                <Nav.Link>
-                                    <Link to="/profile" className="right-buttons">{user.displayName}</Link>
-                                </Nav.Link>
+                                <Link to="/profile" className="nav-link right-buttons">{user.displayName}</Link>
                                 <Nav.Link onClick={handleLogout} className="right-buttons">Logout</Nav.Link>
                             </>
                         )}

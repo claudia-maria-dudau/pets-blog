@@ -1,22 +1,25 @@
-.nav-pills.active {
-    background-color: rgb(156, 76, 98) !important;
-}
-
-.nav-pills a {
-    color: white !important;
-    text-decoration: none;
-}
-
-.right-buttons {
+.my-nav .navbar-brand {
     color: rgb(156, 76, 98) !important;
-    text-decoration: none;
 }
 
-.nav-pills a:hover,
-.right-buttons:hover {
-    color: rgb(159, 126, 135) !important;
+.my-nav .navbar-brand:active,
+.my-nav .navbar-brand:focus {
+    color: rgb(156, 76, 98) !important;
+    background-color: inherit !important;
+    border-radius: 0px !important;
 }
 
-.nav-pills.active a:hover {
-    color:rgb(58, 30, 37) !important;
+.my-nav a {
+    color: white !important;
 }
+
+.my-nav a:hover {
+    color: rgb(156, 76, 98) !important;
+}
+
+/* .my-nav a:active,
+.my-nav a:focus {
+    background-color: rgb(156, 76, 98) !important;
+    color: white !important;
+    border-radius: 5px;
+} */

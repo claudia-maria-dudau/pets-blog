@@ -36,7 +36,7 @@ export default function Edit() {
 
       // allowing editing only if the current is user is the one who created the article
       if (authIsReady) {
-        if (user.id !== article.uid) {
+        if (user.uid !== article.uid) {
           navigate("/home")
         }
       }
@@ -51,10 +51,12 @@ export default function Edit() {
       const docRef = doc(db, 'articles', article.id)
 
       if (image) {
-        // deleting previous image
-        const prevImgRef = ref(storage, article.imageURL)
-        deleteObject(prevImgRef)
-          .catch((err) => setSubmitError(err.message))
+        if (article.imageURL) {
+          // deleting previous image
+          const prevImgRef = ref(storage, article.imageURL)
+          await deleteObject(prevImgRef)
+            .catch((err) => setSubmitError(err.message))
+        }
 
         // upload new article image
         const uploadPath = `articles/${docRef.id}/${image.name}`
@@ -75,7 +77,7 @@ export default function Edit() {
         )
       }
 
-      updateDoc(docRef, {
+      await updateDoc(docRef, {
         title: title,
         content: content,
       }).catch((err) => setSubmitError(err))

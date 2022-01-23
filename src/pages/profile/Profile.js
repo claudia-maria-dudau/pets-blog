@@ -52,20 +52,23 @@ export default function Profile() {
             .catch((err) => setSubmitError(err.message))
 
         // updating user's articles
-        articles.forEach(article => {
-            const docRef = doc(db, 'articles', article.id)
-            updateDoc(docRef, {
-                user: user.displayName
-            })
-                .catch((err) => setSubmitError(err.message))
-        });
+        if (articles) {
+            articles.forEach(article => {
+                const docRef = doc(db, 'articles', article.id)
+                updateDoc(docRef, {
+                    user: user.displayName
+                })
+                    .catch((err) => setSubmitError(err.message))
+            });
+        }
 
         navigate("/profile")
     }
 
     const handleDelete = async (id) => {
         const docRef = doc(db, 'articles', id)
-        deleteDoc(docRef)
+        await deleteDoc(docRef)
+        navigate("/profile")
     }
 
     return (
@@ -106,7 +109,7 @@ export default function Profile() {
 
                     {isPending && <AlertIsPending />}
 
-                    {articles && (
+                    {articles && !error && (
                         <ListGroup>
                             {articles.map(article => (
                                 <ListGroup.Item action variant="light" key={article.id}>
