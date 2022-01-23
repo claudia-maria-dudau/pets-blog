@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 // firebase
 import { db } from '../firebase/config'
-import { collection, onSnapshot, query, where } from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 
 export const useCollection = (coll, _q) => {
     const [documents, setDocuments] = useState(null)
@@ -18,6 +18,9 @@ export const useCollection = (coll, _q) => {
         if (q) {
             ref = query(ref, where(...q))
         }
+
+        // ordering articles by publishing date
+        ref = query(ref, orderBy("date", "desc"))
 
         const unsubscribe = onSnapshot(ref, (snapshot) => {
             if (snapshot.empty) {
