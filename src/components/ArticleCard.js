@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 // components
 import Card from "react-bootstrap/Card"
 
@@ -6,14 +8,12 @@ import "./ArticleCard.css"
 
 export default function ArticleCard({ article }) {
     return (
-        <Card style={{ width: '18rem' }} key={article.id}>
-            <Card.Body>
+        <Card key={article.id}>
+            <Card.Body key={article.id}>
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">By: {article.user}</Card.Subtitle>
-                <Card.Text>
-                    {article.content}
-                </Card.Text>
-                <Card.Link href="/{article.id}">Read</Card.Link>
+                <Card.Text>{article.content.substring(0, 100)}...</Card.Text>
+                <Link to={`/articles/${article.id}`}>Read more</Link>
             </Card.Body>
         </Card>
     );

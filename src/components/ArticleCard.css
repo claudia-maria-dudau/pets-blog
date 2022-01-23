@@ -1,9 +1,23 @@
 .card {
-    margin-left: 3%;
-    margin-top: 3%;
-    border-color: rgb(156, 76, 98);
+    border-color: rgb(156, 76, 98) !important;
+    box-shadow: 3px 3px 3px rgb(159, 126, 135) !important;
+    transition: all 0.5 ease !important;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 7px 7px 7px rgb(159, 126, 135) !important;
 }
 
 .card-subtitle {
-    font-size: small;
+    font-size: small !important;
+}
+
+.card-text {
+    padding-top: 3%;
+}
+
+a {
+    color: rgb(156, 76, 98) !important;
+    text-decoration: none !important;
 }

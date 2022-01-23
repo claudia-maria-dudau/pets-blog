@@ -1,0 +1,34 @@
+.alert {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+    font-size: large;
+    text-align: center;
+}
+
+.article-container {
+    margin-top: 3% !important;
+}
+
+.article-container h1 {
+    color: rgb(156, 76, 98);
+}
+
+.article-container span {
+    color: rgb(159, 126, 135);
+    font-size: small;
+}
+
+.article-container img {
+    height: auto;
+    width: 150px;
+    float: right;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.article-container article {
+    padding-top: 5%;
+    text-align: justify;
+    text-justify: inter-word;
+}
