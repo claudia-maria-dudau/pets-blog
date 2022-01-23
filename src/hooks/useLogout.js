@@ -10,7 +10,7 @@ export const useLogout = () => {
     const logout = () => {
         signOut(auth)
             .then(() => {
-                console.log('user signed out')
+                console.log('user logged out')
                 dispatch({ type: 'LOGOUT' })
             })
             .catch((err) => {

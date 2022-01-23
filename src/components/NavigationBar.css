@@ -2,6 +2,21 @@
     background-color: rgb(156, 76, 98) !important;
 }
 
-.nav-no-pills {
+.nav-pills a {
+    color: white !important;
+    text-decoration: none;
+}
+
+.right-buttons {
     color: rgb(156, 76, 98) !important;
+    text-decoration: none;
+}
+
+.nav-pills a:hover,
+.right-buttons:hover {
+    color: rgb(159, 126, 135) !important;
+}
+
+.nav-pills.active a:hover {
+    color:rgb(58, 30, 37) !important;
 }

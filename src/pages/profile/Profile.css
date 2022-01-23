@@ -1,0 +1,42 @@
+.card {
+    border-color: rgb(156, 76, 98) !important;
+    box-shadow: 7px 7px 7px rgb(159, 126, 135) !important;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: 7px 7px 7px rgb(159, 126, 135) !important;
+}
+
+.card-header {
+    background-color: rgb(159, 126, 135) !important;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    border-color: rgb(159, 126, 135) !important;
+    box-shadow: 0px 0px 7px 3px rgb(159, 126, 135) !important;
+}
+
+button {
+    background: rgb(156, 76, 98) !important;
+    font-size: large;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.list-group {
+    margin-left: 3%;
+}
+
+.list-group-item {
+    background: inherit !important;
+    margin-top: 1%;
+}
+
+.icon {
+    float: right;
+}

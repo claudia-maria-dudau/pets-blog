@@ -1,33 +1,64 @@
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useLogout } from '../hooks/useLogout'
+
 // components
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
-import { useLogout } from '../hooks/useLogout'
-
 // styles
 import './NavigationBar.css'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function NavigationBar() {
     const { logout } = useLogout()
+    const { user } = useAuthContext()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        logout()
+        navigate("/home")
+    }
 
     return (
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="/home">Pets Blog</Navbar.Brand>
-                    <Nav variant="pills" className="me-auto" defaultActiveKey="/home">
-                        <Nav.Item>
-                            <Nav.Link href="#/home" eventKey="/home" className="nav-pills">Home</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="#/articles" eventKey="/articles" className="nav-pills">Articles</Nav.Link>
-                        </Nav.Item>
+                    <Nav variant="pills" className="me-auto" defaultActiveKey={location.pathname}>
+                        <Nav.Link eventKey="/home" className="nav-pills">
+                            <Link to="/home">Home</Link>
+                        </Nav.Link>
+                        <Nav.Link eventKey="/articles" className="nav-pills">
+                            <Link to="/articles">Articles</Link>
+                        </Nav.Link>
+                        {user && (
+                            <Nav.Link eventKey="/create" className="nav-pills">
+                                <Link to="/create">Create Article</Link>
+                            </Nav.Link>
+                        )}
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/login" className="nav-no-pills">Login</Nav.Link>
-                        <Nav.Link href="/signup" className="nav-no-pills">Sign up</Nav.Link>
-                        <Nav.Link onClick={logout} className="nav-no-pills">Logout</Nav.Link>
+                        {!user && (
+                            <>
+                                <Nav.Link>
+                                    <Link to="/login" className="right-buttons">Login</Link>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <Link to="/signup" className="right-buttons">Sign up</Link>
+                                </Nav.Link>
+                            </>
+                        )}
+                        {user && (
+                            <>
+                                <Nav.Link>
+                                    <Link to="/profile" className="right-buttons">{user.email}</Link>
+                                </Nav.Link>
+                                <Nav.Link onClick={handleLogout} className="right-buttons">Logout</Nav.Link>
+                            </>
+                        )}
+
                     </Nav>
                 </Container>
             </Navbar>
