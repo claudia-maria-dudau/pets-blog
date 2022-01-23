@@ -1,5 +1,5 @@
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useCollection } from "../../hooks/useCollection"
 import { useNavigate } from "react-router-dom"
 
@@ -19,23 +19,48 @@ import DeleteIcon from '@mui/icons-material/Delete'
 
 // firebase
 import { db } from "../../firebase/config"
-import { doc, deleteDoc } from "firebase/firestore"
+import { doc, deleteDoc, updateDoc } from "firebase/firestore"
+import { updateProfile } from "firebase/auth"
 
 // styles
 import './Profile.css'
 
-
 export default function Profile() {
     const { user } = useAuthContext()
     const navigate = useNavigate()
-    const [displayName, setDisplayName] = useState(user.email)
+    const [displayName, setDisplayName] = useState('')
+    const [submitError, setSubmitError] = useState('')
     const { documents: articles, isPending, error } = useCollection(
         'articles',
         ["uid", "==", user.uid]
     )
 
-    const handleSubmit = () => {
+    useEffect(() => {
+        if (user) {
+            setDisplayName(user.displayName)
+        }
+    }, [user])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setSubmitError('')
+
+        // updating user data
+        await updateProfile(user, {
+            displayName: displayName
+        })
+            .catch((err) => setSubmitError(err.message))
+
+        // updating user's articles
+        articles.forEach(article => {
+            const docRef = doc(db, 'articles', article.id)
+            updateDoc(docRef, {
+                user: user.displayName
+            })
+                .catch((err) => setSubmitError(err.message))
+        });
+
+        navigate("/profile")
     }
 
     const handleDelete = async (id) => {
@@ -46,7 +71,7 @@ export default function Profile() {
     return (
         <>
             <Card className="profile-card">
-                <Card.Header>Hey, {user.email}</Card.Header>
+                <Card.Header>Hey, {user.displayName}</Card.Header>
 
                 <Card.Body>
                     <Form onSubmit={handleSubmit} className="edit-profile-form">
@@ -72,6 +97,8 @@ export default function Profile() {
                             </Col>
                         </Form.Group>
                     </Form>
+
+                    {submitError && <AlertError message={submitError} />}
                 </Card.Body>
 
                 <Card.Footer>
@@ -88,10 +115,10 @@ export default function Profile() {
                                             {article.title}
                                         </Col>
                                         <Col sm={4}>
-                                            <DeleteIcon sx={{ color: "rgb(233, 73, 73)" }} className="icon" 
-                                                onClick={() => handleDelete(article.id)} 
+                                            <DeleteIcon sx={{ color: "rgb(233, 73, 73)" }} className="icon"
+                                                onClick={() => handleDelete(article.id)}
                                             />
-                                            <EditIcon sx={{ color: "rgb(109, 200, 202)" }} className="icon" 
+                                            <EditIcon sx={{ color: "rgb(109, 200, 202)" }} className="icon"
                                                 onClick={() => navigate(`/edit/${article.id}`)}
                                             />
                                         </Col>

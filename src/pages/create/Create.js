@@ -36,7 +36,7 @@ export default function Create() {
                 content: content,
                 date: new Date().toLocaleString(),
                 imgURL: "",
-                user: user.email,
+                user: user.displayName,
                 uid: user.uid,
             }).catch((err) => setError(err.message))
 

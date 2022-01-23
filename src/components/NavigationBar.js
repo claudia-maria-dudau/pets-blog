@@ -53,7 +53,7 @@ export default function NavigationBar() {
                         {user && (
                             <>
                                 <Nav.Link>
-                                    <Link to="/profile" className="right-buttons">{user.email}</Link>
+                                    <Link to="/profile" className="right-buttons">{user.displayName}</Link>
                                 </Nav.Link>
                                 <Nav.Link onClick={handleLogout} className="right-buttons">Logout</Nav.Link>
                             </>
