@@ -1,25 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 // firebase
 import { db } from '../firebase/config'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, query, where } from 'firebase/firestore'
 
-export const useCollection = (coll) => {
+export const useCollection = (coll, _q) => {
     const [documents, setDocuments] = useState(null)
+    const [isPending, setIsPending] = useState(false)
+    const [error, setError] = useState(false)
+
+    const q = useRef(_q).current
 
     useEffect(() => {
+        setIsPending(true)
         let ref = collection(db, coll)
 
+        if (q) {
+            ref = query(ref, where(...q))
+        }
+
         const unsubscribe = onSnapshot(ref, (snapshot) => {
-            let results = []
-            snapshot.docs.forEach(doc => {
-                results.push({ id: doc.id, ...doc.data() })
-            })
-            setDocuments(results)
+            if (snapshot.empty) {
+                setError('No elements to load')
+                setIsPending(false)
+            } else {
+                let results = []
+
+                snapshot.docs.forEach(doc => {
+                    results.push({ id: doc.id, ...doc.data() })
+                })
+
+                setDocuments(results)
+                setIsPending(false)
+            }
+        }, (err) => {
+            setError(err.message)
+            setIsPending(false)
         })
 
         return () => unsubscribe()
-    }, [coll])
+    }, [coll, q])
 
-    return { documents }
+    return { documents, isPending, error }
 }
