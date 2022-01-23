@@ -82,7 +82,7 @@ export default function Profile() {
                     {articles && (
                         <ListGroup>
                             {articles.map(article => (
-                                <ListGroup.Item action variant="light">
+                                <ListGroup.Item action variant="light" key={article.id}>
                                     <Row>
                                         <Col sm={8}>
                                             {article.title}

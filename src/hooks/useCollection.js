@@ -7,7 +7,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore'
 export const useCollection = (coll, _q) => {
     const [documents, setDocuments] = useState(null)
     const [isPending, setIsPending] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(null)
 
     const q = useRef(_q).current
 

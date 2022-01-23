@@ -11,6 +11,7 @@ export const useDocument = (coll, id) => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        setIsPending(true)
         const docRef = doc(db, coll, id)
 
         const unsubscribe = onSnapshot(docRef, (snapshot) => {

@@ -1,0 +1,11 @@
+.edit-article-form {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+.edit-article-form h3 {
+    color: rgb(156, 76, 98);
+    padding-bottom: 3%;
+    text-align: center;
+}

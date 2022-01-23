@@ -17,8 +17,7 @@
 
 .profile-card .list-group-item {
     background: inherit !important;
-    border-color: grey !important;
-    margin-top: 1%;
+    border-color: rgb(159, 126, 135)!important;
 }
 
 .profile-card .icon {
