@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom"
 import { useDocument } from "../hooks/useDocument"
 
 // components
-import Alert from 'react-bootstrap/Alert'
 import Container from "react-bootstrap/Container"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
+import AlertError from "./AlertError"
+import AlertIsPending from "./AlertIsPending"
 
 // styles
 import './Article.css'
@@ -17,11 +18,7 @@ export default function Article() {
 
     return (
         <>
-            {isPending && (
-                <Alert variant="secondary" className='alert'>
-                    <p>Loading data...</p>
-                </Alert>
-            )}
+            {isPending && <AlertIsPending />}
 
             {article && (
                 <Container className="article-container">
@@ -49,11 +46,7 @@ export default function Article() {
                 </Container>
             )}
 
-            {error && (
-                <Alert variant="danger" className='alert'>
-                    <p>{error}</p>
-                </Alert>
-            )}
+            {error && <AlertError message={error} />}
         </>
     );
 }

@@ -17,6 +17,10 @@ import AlertError from "../../components/AlertError"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 
+// firebase
+import { db } from "../../firebase/config"
+import { doc, deleteDoc } from "firebase/firestore"
+
 // styles
 import './Profile.css'
 
@@ -34,17 +38,18 @@ export default function Profile() {
 
     }
 
-    const handleDelete = (id) => {
-
+    const handleDelete = async (id) => {
+        const docRef = doc(db, 'articles', id)
+        deleteDoc(docRef)
     }
 
     return (
         <>
-            <Card>
+            <Card className="profile-card">
                 <Card.Header>Hey, {user.email}</Card.Header>
 
                 <Card.Body>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} className="edit-profile-form">
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                             <Form.Label column sm="2">Email</Form.Label>
                             <Col sm="10">
@@ -63,9 +68,7 @@ export default function Profile() {
 
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={{ span: 10, offset: 2 }}>
-                                <Button variant="outline-light" type="submit">
-                                    Save Changes
-                                </Button>
+                                <Button type="submit">Save Changes</Button>
                             </Col>
                         </Form.Group>
                     </Form>

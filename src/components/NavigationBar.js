@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // components
 import Container from 'react-bootstrap/Container'
@@ -8,7 +9,6 @@ import Nav from 'react-bootstrap/Nav'
 
 // styles
 import './NavigationBar.css'
-import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function NavigationBar() {
     const { logout } = useLogout()

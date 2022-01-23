@@ -1,23 +1,23 @@
-.card {
+.article-card {
     border-color: rgb(156, 76, 98) !important;
     box-shadow: 3px 3px 3px rgb(159, 126, 135) !important;
     transition: all 0.5 ease !important;
 }
 
-.card:hover {
+.article-card:hover {
     transform: scale(1.05);
     box-shadow: 7px 7px 7px rgb(159, 126, 135) !important;
 }
 
-.card-subtitle {
+.article-card .card-subtitle {
     font-size: small !important;
 }
 
-.card-text {
+.article-card .card-text {
     padding-top: 3%;
 }
 
-a {
+.article-card a {
     color: rgb(156, 76, 98) !important;
     text-decoration: none !important;
 }

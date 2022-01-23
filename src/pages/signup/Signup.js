@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
-import { useNavigate } from 'react-router-dom'
 
 // components
 import Form from 'react-bootstrap/Form'
@@ -16,12 +15,10 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [checkPassword, setCheckPassword] = useState('')
     const { error, signup } = useSignup()
-    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         signup(email, password, checkPassword)
-        navigate("/home")
     }
 
     return (
@@ -54,12 +51,10 @@ export default function Signup() {
                     </FloatingLabel>
                 </Form.Group>
 
-                <Button variant="outline-light" type="submit" style={{ background: "rgb(156, 76, 98)" }}>
-                    Sign up
-                </Button>
+                <Button type="submit">Sign up</Button>
             </Form>
             
-            {error && <AlertError message={error} />}
+            {error && <AlertError message={error}/>}
         </>
     )
 }

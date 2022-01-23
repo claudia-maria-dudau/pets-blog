@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useLogin } from '../../hooks/useLogin'
 
 // components
@@ -15,12 +14,10 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { error, login } = useLogin()
-    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         login(email, password)
-        navigate("/home")
     }
 
     return (
@@ -44,9 +41,7 @@ export default function Login() {
                     </FloatingLabel>
                 </Form.Group>
 
-                <Button variant="outline-light" type="submit" style={{ background: "rgb(156, 76, 98)" }}>
-                    Login
-                </Button>
+                <Button type="submit" >Login</Button>
             </Form>
             
             {error && <AlertError message={error} />}

@@ -116,9 +116,7 @@ export default function Create() {
 
                 {imageError && <AlertError message={imageError} />}
 
-                <Button variant="outline-light" type="submit">
-                    Create
-                </Button>
+                <Button type="submit">Create</Button>
             </Form>
 
             {error && <AlertError message={error} />}
