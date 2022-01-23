@@ -19,7 +19,7 @@ export const useCollection = (coll, _q) => {
             ref = query(ref, where(...q))
         }
 
-        // ordering articles by publishing date
+        // ordering articles by date
         ref = query(ref, orderBy("date", "desc"))
 
         const unsubscribe = onSnapshot(ref, (snapshot) => {

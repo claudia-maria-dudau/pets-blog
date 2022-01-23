@@ -1,0 +1,12 @@
+.home-carousel {
+    margin-top: 3%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.home-carousel img {
+    height: 400px;
+    width: 800px;
+    margin-bottom: 5%;
+    opacity: 0.85;
+}
