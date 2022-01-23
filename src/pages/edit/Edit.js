@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useDocument } from "../../hooks/useDocument"
 import { useState, useEffect } from "react"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 // components
 import Form from 'react-bootstrap/Form'
@@ -17,6 +18,7 @@ import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebas
 import "./Edit.css"
 
 export default function Edit() {
+  const { user, authIsReady } = useAuthContext()
   const { id } = useParams()
   const { document: article, isPending, error } = useDocument('articles', id)
   const [title, setTitle] = useState('')
@@ -31,8 +33,15 @@ export default function Edit() {
     if (article) {
       setTitle(article.title)
       setContent(article.content)
+
+      // allowing editing only if the current is user is the one who created the article
+      if (authIsReady) {
+        if (user.id !== article.uid) {
+          navigate("/home")
+        }
+      }
     }
-  }, [article])
+  }, [article, user, authIsReady, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
