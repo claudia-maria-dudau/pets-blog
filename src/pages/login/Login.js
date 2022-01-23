@@ -41,7 +41,7 @@ export default function Login() {
                     </FloatingLabel>
                 </Form.Group>
 
-                <Button type="submit" >Login</Button>
+                <Button variant="outline-light" type="submit" >Login</Button>
             </Form>
             
             {error && <AlertError message={error} />}

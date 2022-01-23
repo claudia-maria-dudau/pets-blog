@@ -93,7 +93,7 @@ export default function Profile() {
 
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={{ span: 10, offset: 2 }}>
-                                <Button type="submit">Save Changes</Button>
+                                <Button variant="outline-light" type="submit">Save Changes</Button>
                             </Col>
                         </Form.Group>
                     </Form>
@@ -111,7 +111,7 @@ export default function Profile() {
                             {articles.map(article => (
                                 <ListGroup.Item action variant="light" key={article.id}>
                                     <Row>
-                                        <Col sm={8}>
+                                        <Col sm={8} onClick={() => navigate(`/articles/${article.id}`)}>
                                             {article.title}
                                         </Col>
                                         <Col sm={4}>

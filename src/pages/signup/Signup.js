@@ -51,7 +51,7 @@ export default function Signup() {
                     </FloatingLabel>
                 </Form.Group>
 
-                <Button type="submit">Sign up</Button>
+                <Button variant="outline-light" type="submit">Sign up</Button>
             </Form>
             
             {error && <AlertError message={error}/>}

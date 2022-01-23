@@ -126,7 +126,7 @@ export default function Edit() {
 
           {imageError && <AlertError message={imageError} />}
 
-          <Button type="submit">Save Changes</Button>
+          <Button variant="outline-light" type="submit">Save Changes</Button>
         </Form>
       )}
 
