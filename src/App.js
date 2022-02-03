@@ -7,7 +7,7 @@ import "./App.css"
 // pages
 import Home from './pages/home/Home'
 import Articles from './pages/articles/Articles'
-import Article from './components/Article'
+import Article from './components/article/Article'
 import Create from './pages/create/Create'
 import Edit from './pages/edit/Edit'
 import Login from './pages/login/Login'
@@ -15,7 +15,7 @@ import Signup from './pages/signup/Signup'
 import Profile from './pages/profile/Profile'
 
 // components
-import NavigationBar from './components/NavigationBar'
+import NavigationBar from './components/navigation-bar/NavigationBar'
 import AlertIsPending from './components/AlertIsPending'
 
 function App() {

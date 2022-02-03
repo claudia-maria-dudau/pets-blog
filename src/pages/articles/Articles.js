@@ -3,7 +3,7 @@ import { useCollection } from '../../hooks/useCollection'
 // components
 import AlertIsPending from '../../components/AlertIsPending'
 import AlertError from '../../components/AlertError'
-import ArticleCard from '../../components/ArticleCard'
+import ArticleCard from '../../components/article-card/ArticleCard'
 
 // styles
 import './Articles.css'

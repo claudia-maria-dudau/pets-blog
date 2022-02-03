@@ -20,6 +20,10 @@
     border-color: rgb(159, 126, 135)!important;
 }
 
+.profile-card .list-group-item:hover {
+    background-color: rgba(212, 204, 207, 0.4) !important;
+}
+
 .profile-card .icon {
     float: right;
 }

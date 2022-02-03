@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom"
-import { useDocument } from "../hooks/useDocument"
+import { useDocument } from "../../hooks/useDocument"
 
 // components
 import Container from "react-bootstrap/Container"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
-import AlertError from "./AlertError"
-import AlertIsPending from "./AlertIsPending"
+import AlertError from "../AlertError"
+import AlertIsPending from "../AlertIsPending"
 
 // styles
 import './Article.css'

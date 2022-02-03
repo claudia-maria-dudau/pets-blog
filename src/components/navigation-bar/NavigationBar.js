@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useLogout } from '../hooks/useLogout'
-import { useAuthContext } from '../hooks/useAuthContext'
+import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // components
 import Container from 'react-bootstrap/Container'
